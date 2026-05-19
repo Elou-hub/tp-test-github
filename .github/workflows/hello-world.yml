@@ -1,0 +1,24 @@
+name: Hello World CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  hello-world:
+    name: Run Hello World Job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Hello World
+        run: echo "Hello world !"
+
+      - name: Show Current Date
+        run: |
+          echo "Current Date:"
+          date
+
+      - name: Verify Environment
+        run: |
+          uname -a
+          whoami
