@@ -1,0 +1,31 @@
+name: Conditional Workflow
+
+on:
+  push:
+    branches: [main]
+
+env:
+  water: cold
+
+jobs:
+  show-context:
+    name: Show GitHub Context
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show GitHub variable
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Actor: ${{ github.actor }}"
+
+  water-job:
+    name: Run only if water is cold
+    runs-on: ubuntu-latest
+    needs: show-context
+    if: ${{ env.water == 'cold' }}
+
+    steps:
+      - name: Display water variable
+        run: |
+          echo "Water is ${{ env.water }}"
+          echo "This job runs because water is cold"
