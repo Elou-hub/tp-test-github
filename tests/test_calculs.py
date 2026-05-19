@@ -46,3 +46,7 @@ class TestDiviser:
     def test_type_incorrect(self):
         with pytest.raises(TypeError):
             diviser("8", 2)
+
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])
