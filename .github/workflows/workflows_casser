@@ -1,0 +1,34 @@
+name: Workflow réparé
+
+on:
+  workflow_dispatch:
+
+env:
+  ma_variable: "valeur_test"
+  my_secret: "secret_value"
+
+jobs:
+  build_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Afficher variable
+        run: echo "${{ env.ma_variable }}"
+
+      - name: Test commande
+        run: |
+          echo "Hello World"
+          if true; then
+            echo "Vrai"
+          fi
+
+  test-job:
+    runs-on: ubuntu-latest
+    needs: [build_job]
+
+    steps:
+      - name: Test
+        run: echo "Test"
