@@ -4,12 +4,8 @@ on:
   push:
     branches: [main]
 
-env:
-  water: cold
-
 jobs:
   show-context:
-    name: Show GitHub Context
     runs-on: ubuntu-latest
 
     steps:
@@ -19,13 +15,17 @@ jobs:
           echo "Actor: ${{ github.actor }}"
 
   water-job:
-    name: Run only if water is cold
     runs-on: ubuntu-latest
     needs: show-context
-    if: ${{ env.water == 'cold' }}
 
     steps:
-      - name: Display water variable
+      - name: Define variable
+        run: echo "water=cold" >> $GITHUB_ENV
+
+      - name: Display variable
         run: |
-          echo "Water is ${{ env.water }}"
-          echo "This job runs because water is cold"
+          echo "Water is $water"
+
+      - name: Conditional step
+        if: ${{ env.water == 'cold' }}
+        run: echo "Water is cold, job executed"
