@@ -13,4 +13,5 @@ jobs:
 
     steps:
       - name: Display reusable message
-        run: echo "Message reçu : ${{ inputs.message }}"
+        run: |
+          echo "Message reçu : ${{ inputs.message }}"
