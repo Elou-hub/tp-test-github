@@ -1,0 +1,12 @@
+name: Use Reusable Workflow
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  call-reusable:
+    uses: ./.github/workflows/reusable-echo.yml
+    with:
+      message: "Bonjour depuis TP9"

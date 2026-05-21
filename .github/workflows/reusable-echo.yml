@@ -1,0 +1,16 @@
+name: Reusable Echo Workflow
+
+on:
+  workflow_call:
+    inputs:
+      message:
+        required: true
+        type: string
+
+jobs:
+  echo-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display reusable message
+        run: echo "Message reçu : ${{ inputs.message }}"
