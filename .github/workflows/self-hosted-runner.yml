@@ -1,0 +1,32 @@
+name: Self Hosted Runner Test
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  self-hosted-job:
+    name: Job on self-hosted runner
+    runs-on: self-hosted
+
+    env:
+      ENV_TP: "TP8"
+      ENV_MODULE: "Module 6"
+      ENV_RUNNER: "self-hosted"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Display environment variables
+        run: |
+          echo "ENV_TP=$ENV_TP"
+          echo "ENV_MODULE=$ENV_MODULE"
+          echo "ENV_RUNNER=$ENV_RUNNER"
+
+      - name: Display system info
+        run: |
+          hostname
+          uname -a
+          whoami
