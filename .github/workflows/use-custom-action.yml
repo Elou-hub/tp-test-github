@@ -1,0 +1,23 @@
+name: Use External Custom Action
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  use-action:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use external custom action
+        id: custom
+        uses: Elou-hub/custom-echo-action/.github/actions/echo@main
+        with:
+          message: "Action externe TP10 utilisée depuis le TP4"
+
+      - name: Display action output
+        run: echo "Output reçu : ${{ steps.custom.outputs.echoed-message }}"
