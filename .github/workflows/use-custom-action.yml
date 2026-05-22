@@ -20,4 +20,5 @@ jobs:
           message: "Action externe TP10 utilisée depuis le TP4"
 
       - name: Display action output
-        run: echo "Output reçu : ${{ steps.custom.outputs.echoed-message }}"
+        run: |
+          echo "Output reçu : ${{ steps.custom.outputs.echoed-message }}"
